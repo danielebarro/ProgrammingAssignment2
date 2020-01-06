@@ -4,7 +4,7 @@ makeCacheMatrix = function( x = matrix() ) {
     s = NULL #Initialize the solution to the inverse of the matrix to be a NULL value.
       
     set = function(y){ #Defines a function with name 'set'.
-      x <<- y #Set the Matrix 'x' to a new Matrix 'y.
+      x <<- y #Set the Matrix 'x' to a new Matrix 'y'.
       s <<- NULL #reset the value of the inverse of the matrix equal to NULL.
     }
         
