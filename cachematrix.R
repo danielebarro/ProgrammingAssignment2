@@ -1,8 +1,6 @@
-## Put comments here that give an overall description of what your
-## functions do
+#Below two functions necessary to cache the inverse of a matrix given in input.
 
-## Write a short comment describing this function
-
+#The function 'makeCacheMatrix' has only one attribute which is a matrix given in input and can cach its inverse
 makeCacheMatrix = function( x = matrix() ) {
     s = NULL #Initialize the solution to the inverse of the matrix to be a NULL value
       
@@ -12,11 +10,10 @@ makeCacheMatrix = function( x = matrix() ) {
     }
         
     get = function() x #Assigne to 'get' a function that returns the Matrix 'x'
-    setinverse = function(inverse) s <<- inverse #Assigne to 'setinverse' a function that set the inverse, s, to inverse
-    getinverse = function() s #Return the inverse, s, of the matrix. If the inverse function has 
-                              #been manually setted than it returnes the setted inverse matrix
+    setinverse = function(inverse) s <<- inverse #Assigne to 'setinverse' a function that set the inverse, s, of the matrix
+    getinverse = function() s #Return the inverse, s, of the matrix.
     
-   #Returns a special vector containing the functions just defined
+   #Returns a special vector containing the functions just defined above
    list(set = set, #gives the name 'set' to the function set() defined above
          get = get, #gives the name 'get' to the function get() defined above
          setinverse=setinverse, #gives the name 'setinverse' to the function setinverse() defined above
@@ -24,15 +21,17 @@ makeCacheMatrix = function( x = matrix() ) {
 }
 
 
- ## Return a matrix that is the inverse of 'x'
+# Compute the inverse of the special matrix returned by "makeCacheMatrix".
+#If the inverse has already been calculated (and the matrix has not
+# changed), then the "cachesolve" retrieves the inverse from the cache.
 cacheSolve <- function(x, ...) {
-          s = x$getinverse() #Assigne to, is the solution of the stored inverted matrix
-                if (!is.null(s)){ #Condition to check if the any inverted matrix has been stored 
+          s = x$getinverse() #Assigne to 's' the solution of the stored inverted matrix
+                if (!is.null(s)){ #Condition to check if any inverted matrix has been stored 
                          message("getting cached data") #Worning message that displayes only if the inverse matrix has been stored
-                         return(s) #Returns the stored matrix only if it is not NULL
+                         return(s) 
                         }
           data = x$get() #Assigne to 'data' the the function 'get' so that the variable 'data' now containes the matrix give by the user
-          s = solve(data,...) #Assigne to 's' the solution to the inverse of the matrix given in input
+          s = solve(data,...) #Assigne to 's' the solution to the inverse of the matrix given by the user
           x$setinverse(s) #Call the function setinverse and store the invertse matrix
           s #Print the inverted matrix
         }
